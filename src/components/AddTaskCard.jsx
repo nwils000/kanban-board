@@ -1,7 +1,13 @@
+import { useContext } from 'react';
+import { GlobalTaskData } from '../main';
+import { useState } from 'react';
+
 export default function AddTaskCard({
   addTaskCardDisplay,
   handleAddTaskCardPressed,
 }) {
+  const { state, dispatch } = useContext(GlobalTaskData);
+  const [title, setTitle] = useState('');
   return (
     <div
       style={{
@@ -16,7 +22,30 @@ export default function AddTaskCard({
       className="edit-task-card"
       onClick={handleAddTaskCardPressed}
     >
-      Add Task Card
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => {
+          setTitle(e.target.value);
+        }}
+      />
+      <button
+        onClick={() => {
+          dispatch({
+            type: 'ADD_TASK',
+            task: {
+              title: title,
+              index: state.tasks.length + 1,
+            },
+          });
+        }}
+      >
+        add task
+      </button>
+      {state?.tasks[0]?.taskNumber}
+      {state?.tasks[1]?.taskNumber}
+      {state?.tasks[2]?.taskNumber}
+      {console.log('stateTasks', state?.tasks[0]?.title)}
     </div>
   );
 }
