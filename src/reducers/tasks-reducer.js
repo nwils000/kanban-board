@@ -18,6 +18,7 @@ export const tasksReducer = (state, action) => {
             taskNumber: action.task.index,
             dateCreated: action.task.dateCreated,
             storyPoints: action.task.storyPoints,
+            category: action.task.category,
             id: uuidv4(),
           },
         ],

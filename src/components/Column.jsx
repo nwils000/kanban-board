@@ -1,7 +1,10 @@
 import TaskCard from './TaskCard';
 import { useState } from 'react';
+import AddTaskCard from './AddTaskCard';
+import EditTaskCard from './EditTaskCard';
 
-export default function Column({ title }) {
+export default function Column({ title, tasks }) {
+  console.log('tasks', tasks);
   const [editTaskCardDisplay, setEditTaskCardDisplay] = useState('none');
   const [addTaskCardDisplay, setAddTaskCardDisplay] = useState('none');
 
@@ -24,9 +27,29 @@ export default function Column({ title }) {
         <span>{title}</span>
         <button onClick={handleAddTaskCardPressed}>+</button>
       </div>
-      <TaskCard
+      {tasks.map((e) => {
+        return (
+          <TaskCard
+            category={title}
+            key={e.id}
+            title={e.title}
+            dateCreated={e.dateCreated}
+            taskNumber={e.taskNumber}
+            storyPoints={e.storyPoints}
+            editTaskCardDisplay={editTaskCardDisplay}
+            handleEditTaskCardPressed={handleEditTaskCardPressed}
+            addTaskCardDisplay={addTaskCardDisplay}
+            handleAddTaskCardPressed={handleAddTaskCardPressed}
+          />
+        );
+      })}
+      <EditTaskCard
+        category={title}
         editTaskCardDisplay={editTaskCardDisplay}
         handleEditTaskCardPressed={handleEditTaskCardPressed}
+      />
+      <AddTaskCard
+        category={title}
         addTaskCardDisplay={addTaskCardDisplay}
         handleAddTaskCardPressed={handleAddTaskCardPressed}
       />

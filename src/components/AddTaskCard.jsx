@@ -5,9 +5,25 @@ import { useState } from 'react';
 export default function AddTaskCard({
   addTaskCardDisplay,
   handleAddTaskCardPressed,
+  category,
 }) {
   const { state, dispatch } = useContext(GlobalTaskData);
   const [title, setTitle] = useState('');
+  const [storyPoints, setStoryPoints] = useState(0);
+
+  function currentDateAndTime() {
+    let currentDate = new Date();
+    let formattedDate = currentDate.toLocaleString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+    });
+    return formattedDate;
+  }
+  console.log('add task');
+
   return (
     <div
       style={{
@@ -20,7 +36,6 @@ export default function AddTaskCard({
         width: '100%',
       }}
       className="edit-task-card"
-      onClick={handleAddTaskCardPressed}
     >
       <input
         type="text"
@@ -29,22 +44,31 @@ export default function AddTaskCard({
           setTitle(e.target.value);
         }}
       />
+      <input
+        type="number"
+        value={storyPoints}
+        onChange={(e) => {
+          setStoryPoints(e.target.value);
+        }}
+      />
       <button
         onClick={() => {
+          handleAddTaskCardPressed();
           dispatch({
             type: 'ADD_TASK',
             task: {
               title: title,
               index: state.tasks.length + 1,
+              dateCreated: currentDateAndTime(),
+              storyPoints: storyPoints,
+              category: category,
             },
           });
         }}
       >
         add task
       </button>
-      {state?.tasks[0]?.taskNumber}
-      {state?.tasks[1]?.taskNumber}
-      {state?.tasks[2]?.taskNumber}
+
       {console.log('stateTasks', state?.tasks[0]?.title)}
     </div>
   );
