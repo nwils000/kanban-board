@@ -1,11 +1,11 @@
-export default function EditTaskCard({
-  editTaskCardDisplay,
-  handleEditTaskCardPressed,
+export default function AddTaskCard({
+  addTaskCardDisplay,
+  handleAddTaskCardPressed,
 }) {
   return (
     <div
       style={{
-        display: editTaskCardDisplay,
+        display: addTaskCardDisplay,
         backgroundColor: 'red',
         height: '12rem',
         position: 'absolute',
@@ -14,9 +14,9 @@ export default function EditTaskCard({
         width: '100%',
       }}
       className="edit-task-card"
-      onClick={handleEditTaskCardPressed}
+      onClick={handleAddTaskCardPressed}
     >
-      Edit Task Card
+      Add Task Card
     </div>
   );
 }

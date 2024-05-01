@@ -1,20 +1,14 @@
 import '../styles/TaskCard.css';
 import SeverityBadge from './SeverityBadge';
 import EditTaskCard from './EditTaskCard';
-import { useState } from 'react';
+import AddTaskCard from './AddTaskCard';
 
-export default function TaskCard() {
-  const [display, setHidden] = useState('block');
-
-  function handleTaskCardPressed() {
-    display === 'none' ? setHidden('block') : setHidden('none');
-  }
-
+export default function TaskCard(props) {
   return (
     <div
       className="task-card"
       style={{ position: 'relative' }}
-      onClick={handleTaskCardPressed}
+      onClick={props.handleEditTaskCardPressed}
     >
       <span>#100 * 1 May, 3:23 PM</span>
       <p>Task Card</p>
@@ -23,8 +17,12 @@ export default function TaskCard() {
         <span>8.8 {'importance level'}</span>
       </div>
       <EditTaskCard
-        display={display}
-        handleTaskCardPressed={handleTaskCardPressed}
+        editTaskCardDisplay={props.editTaskCardDisplay}
+        handleTaskCardPressed={props.handleEditTaskCardPressed}
+      />
+      <AddTaskCard
+        addTaskCardDisplay={props.addTaskCardDisplay}
+        handleTaskCardPressed={props.handleAddTaskCardPressed}
       />
     </div>
   );

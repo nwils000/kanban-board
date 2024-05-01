@@ -14,4 +14,21 @@
 .board-column {
   border-radius: 6px;
   background-color: rgb(241, 241, 241);
+  text-align: left;
+}
+
+.board-column > div:first-of-type {
+  padding: 20px 20px 5px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.board-column > div:first-of-type > button {
+  border: none;
+  font-size: 1.5rem;
+}
+
+.board-column > div:first-of-type > button:hover {
+  cursor: pointer;
 }
