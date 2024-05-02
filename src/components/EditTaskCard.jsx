@@ -7,13 +7,15 @@ export default function EditTaskCard({
   handleEditTaskCardPressed,
   cardId,
   category,
+  taskTitle,
+  taskSeverity,
 }) {
   const { state, dispatch } = useContext(GlobalTaskData);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState(taskTitle);
   const [selectedCategory, setSelectedCategory] = useState(category);
-  const [severity, setSeverity] = useState(0);
+  const [severity, setSeverity] = useState(taskSeverity);
   console.log('THE CAT', category);
-  
+
   function currentDateAndTime() {
     let currentDate = new Date();
     let formattedDate = currentDate.toLocaleString('en-US', {
