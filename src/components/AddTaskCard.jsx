@@ -22,18 +22,19 @@ export default function AddTaskCard({
     });
     return formattedDate;
   }
-  console.log('add task');
+  // console.log('add task');
 
   return (
     <div
       style={{
         display: addTaskCardDisplay,
         backgroundColor: 'red',
-        height: '12rem',
+        height: '100%',
         position: 'absolute',
         top: '0px',
         left: '0px',
         width: '100%',
+        borderRadius: '6px',
       }}
       className="edit-task-card"
     >
@@ -69,7 +70,7 @@ export default function AddTaskCard({
         add task
       </button>
 
-      {console.log('stateTasks', state?.tasks[0]?.title)}
+      {/* {console.log('stateTasks', state?.tasks[0]?.title)} */}
     </div>
   );
 }

@@ -1,37 +1,47 @@
 import TaskCard from './TaskCard';
 import { useState } from 'react';
 import AddTaskCard from './AddTaskCard';
-import EditTaskCard from './EditTaskCard';
 
 export default function Column({ title, tasks }) {
-  console.log('tasks', tasks);
+  // console.log('tasks', tasks);
   const [editTaskCardDisplay, setEditTaskCardDisplay] = useState('none');
   const [addTaskCardDisplay, setAddTaskCardDisplay] = useState('none');
+  const [displayEditTaskCard, setDisplayEditTaskCard] = useState(true);
 
   function handleEditTaskCardPressed() {
     editTaskCardDisplay === 'none'
       ? setEditTaskCardDisplay('block')
       : setEditTaskCardDisplay('none');
-    console.log('clicked');
+    // console.log('clicked');
   }
   function handleAddTaskCardPressed() {
     addTaskCardDisplay === 'none'
       ? setAddTaskCardDisplay('block')
       : setAddTaskCardDisplay('none');
-    console.log('clicked');
+    // console.log('clicked');
+  }
+
+  function toggleDisplayEditTaskCard() {
+    displayEditTaskCard
+      ? setDisplayEditTaskCard(false)
+      : setDisplayEditTaskCard(true);
   }
 
   return (
-    <div className="board-column">
+    <div className="board-column" style={{ position: 'relative' }}>
       <div>
         <span>{title}</span>
         <button onClick={handleAddTaskCardPressed}>+</button>
       </div>
       {tasks.map((e) => {
+        console.log('ID', e.id);
         return (
           <TaskCard
+            displayEditTaskCard={displayEditTaskCard}
+            toggleDisplayEditTaskCard={toggleDisplayEditTaskCard}
             category={title}
             key={e.id}
+            id={e.id}
             title={e.title}
             dateCreated={e.dateCreated}
             taskNumber={e.taskNumber}
@@ -43,11 +53,6 @@ export default function Column({ title, tasks }) {
           />
         );
       })}
-      <EditTaskCard
-        category={title}
-        editTaskCardDisplay={editTaskCardDisplay}
-        handleEditTaskCardPressed={handleEditTaskCardPressed}
-      />
       <AddTaskCard
         category={title}
         addTaskCardDisplay={addTaskCardDisplay}

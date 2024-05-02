@@ -4,3 +4,7 @@
   text-align: left;
   padding: 1rem;
 }
+
+.task-card:hover {
+  cursor: pointer;
+}
