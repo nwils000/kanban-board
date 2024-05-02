@@ -2,7 +2,7 @@ export default function SeverityBadge({ severityAmount }) {
   const style = {
     padding: '3px 9px',
     color: 'white',
-    borderRadius: '10px',
+    borderRadius: '10rem',
     display: 'inline-block',
     fontSize: '.95rem',
   };

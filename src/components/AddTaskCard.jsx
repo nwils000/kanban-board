@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { GlobalTaskData } from '../main';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import '../styles/EditAddTaskCard.css';
 
 export default function AddTaskCard({
   addTaskCardDisplay,
@@ -28,31 +29,40 @@ export default function AddTaskCard({
     <div
       style={{
         display: addTaskCardDisplay,
-        backgroundColor: 'red',
-        height: '100%',
-        position: 'absolute',
-        top: '0px',
-        left: '0px',
-        width: '100%',
-        borderRadius: '6px',
       }}
-      className="edit-task-card"
+      className="modal modal-add"
     >
-      <span onClick={handleAddTaskCardPressed}>X</span>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => {
-          setTitle(e.target.value);
-        }}
-      />
-      <input
-        type="number"
-        value={severity}
-        onChange={(e) => {
-          setSeverity(e.target.value);
-        }}
-      />
+      <span
+        className="x"
+        style={{ alignSelf: 'right', width: 'fit-content', marginLeft: 'auto' }}
+        onClick={handleAddTaskCardPressed}
+      >
+        X
+      </span>
+      <div className="label-group">
+        <label htmlFor="title">Title:</label>
+        <input
+          id="title"
+          type="text"
+          value={title}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+        />
+      </div>
+      <div className="label-group">
+        <label htmlFor="severity">Severity:</label>
+        <input
+          id="severity"
+          type="number"
+          min="0"
+          max="10"
+          value={severity}
+          onChange={(e) => {
+            setSeverity(e.target.value);
+          }}
+        />
+      </div>
       <button
         onClick={() => {
           handleAddTaskCardPressed();

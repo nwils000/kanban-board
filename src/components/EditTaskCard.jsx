@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { GlobalTaskData } from '../main';
 import { useState } from 'react';
+import '../styles/EditAddTaskCard.css';
 
 export default function EditTaskCard({
   editTaskCardDisplay,
@@ -33,61 +34,78 @@ export default function EditTaskCard({
     <div
       style={{
         display: editTaskCardDisplay,
-        backgroundColor: 'red',
-        height: '100%',
-        position: 'absolute',
-        top: '0px',
-        left: '0px',
-        width: '100%',
-        borderRadius: '6px',
       }}
-      className="edit-task-card"
+      className="modal"
     >
-      <span onClick={handleEditTaskCardPressed}>X</span>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => {
-          setTitle(e.target.value);
-        }}
-      />
-      <input
-        type="number"
-        value={severity}
-        onChange={(e) => {
-          setSeverity(e.target.value);
-        }}
-      />
-      {console.log('selected category', selectedCategory)}
-      <select
-        onChange={(e) => {
-          setSelectedCategory(e.target.value);
-        }}
-        defaultValue={selectedCategory}
+      <span
+        className="x"
+        style={{ alignSelf: 'right', width: 'fit-content', marginLeft: 'auto' }}
+        onClick={handleEditTaskCardPressed}
       >
-        <option value="BACKLOG">BACKLOG</option>
-        <option value="IN PROGRESS">IN PROGRESS</option>
-        <option value="IN REVIEW">IN REVIEW</option>
-        <option value="DONE">DONE</option>
-      </select>
-      <button
-        onClick={() => {
-          handleEditTaskCardPressed();
-          dispatch({
-            type: 'EDIT_TASK',
-            task: {
-              id: cardId,
-              title: title,
-              index: state.tasks.length,
-              dateCreated: currentDateAndTime(),
-              severity: severity,
-              category: selectedCategory,
-            },
-          });
-        }}
-      >
-        Edit Task
-      </button>
+        X
+      </span>
+      <div className="label-group">
+        <label htmlFor="title">Title:</label>
+        <input
+          id="title"
+          type="text"
+          value={title}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+        />
+      </div>
+      <div className="label-group">
+        <label htmlFor="severeity">Severity:</label>
+        <input
+          id="severity"
+          type="number"
+          min="0"
+          max="10"
+          value={severity}
+          onChange={(e) => {
+            setSeverity(e.target.value);
+          }}
+        />
+      </div>
+      <div className="label-group">
+        <label htmlFor="categories">Switch&nbsp;Category:</label>
+        <select
+          id="categories"
+          onChange={(e) => {
+            setSelectedCategory(e.target.value);
+          }}
+          defaultValue={selectedCategory}
+        >
+          <option value="BACKLOG">BACKLOG</option>
+          <option value="IN PROGRESS">IN PROGRESS</option>
+          <option value="IN REVIEW">IN REVIEW</option>
+          <option value="DONE">DONE</option>
+        </select>
+      </div>
+      <div>
+        <div className="modal-buttons">
+          <button
+            onClick={() => {
+              handleEditTaskCardPressed();
+              dispatch({
+                type: 'EDIT_TASK',
+                task: {
+                  id: cardId,
+                  title: title,
+                  index: state.tasks.length,
+                  dateCreated: currentDateAndTime(),
+                  severity: severity,
+                  category: selectedCategory,
+                },
+              });
+            }}
+          >
+            Edit Task
+          </button>
+          <button>Remove Task</button>
+        </div>
+      </div>
 
       {/* {console.log('stateTasks', state?.tasks[0]?.title)} */}
     </div>

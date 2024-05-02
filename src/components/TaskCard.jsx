@@ -9,7 +9,7 @@ export default function TaskCard(props) {
   const [editTaskCardDisplay, setEditTaskCardDisplay] = useState('none');
   function handleEditTaskCardPressed() {
     editTaskCardDisplay === 'none'
-      ? setEditTaskCardDisplay('block')
+      ? setEditTaskCardDisplay('flex')
       : setEditTaskCardDisplay('none');
     // console.log('clicked');
   }
@@ -17,56 +17,56 @@ export default function TaskCard(props) {
   return (
     <>
       {console.log('KEY', props.id)}
-      <div className="task-card" onClick={handleEditTaskCardPressed}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            color: 'rgb(183 183 183)',
-            fontSize: '.95rem',
-          }}
-        >
-          <span
+      <div className="task-card">
+        <div onClick={handleEditTaskCardPressed}>
+          <div
             style={{
               display: 'flex',
-              gap: '10px',
+              justifyContent: 'space-between',
+              color: 'rgb(183 183 183)',
+              fontSize: '.95rem',
             }}
           >
-            <span style={{ color: 'rgb(149 149 149)' }}>
-              #{props.taskNumber}
-            </span>{' '}
-            <span>•</span> <span>{props.dateCreated}</span>
-          </span>
-          <span
-            onClick={() => {
-              dispatch({
-                type: 'DELETE_TASK',
-                task: {
-                  id: props.id,
-                },
-              });
-            }}
+            <span
+              style={{
+                display: 'flex',
+                gap: '10px',
+              }}
+            >
+              <span style={{ color: 'rgb(149 149 149)' }}>
+                #{props.taskNumber}
+              </span>{' '}
+              <span>•</span> <span>{props.dateCreated}</span>
+            </span>
+            <span
+              onClick={() => {
+                dispatch({
+                  type: 'DELETE_TASK',
+                  task: {
+                    id: props.id,
+                  },
+                });
+              }}
+            ></span>
+          </div>
+          <p style={{ fontSize: '1.15rem' }}>{props.title}</p>
+          <div
+            className="severity-wrapper"
+            style={{ display: 'flex', gap: '10px', alignItems: 'center' }}
           >
-            <span style={{ color: 'black' }}>X</span>
-          </span>
+            <SeverityBadge severityAmount={props.severity} />
+            <span>{props.severity}</span>
+          </div>
         </div>
-        <p style={{ fontSize: '1.15rem' }}>{props.title}</p>
-        <div
-          className="severity-wrapper"
-          style={{ display: 'flex', gap: '10px', alignItems: 'center' }}
-        >
-          <SeverityBadge severityAmount={props.severity} />
-          <span>{props.severity}</span>
-        </div>
+        <EditTaskCard
+          category={props.category}
+          editTaskCardDisplay={editTaskCardDisplay}
+          handleEditTaskCardPressed={handleEditTaskCardPressed}
+          cardId={props.id}
+          taskTitle={props.title}
+          taskSeverity={props.severity}
+        />
       </div>
-      <EditTaskCard
-        category={props.category}
-        editTaskCardDisplay={editTaskCardDisplay}
-        handleEditTaskCardPressed={handleEditTaskCardPressed}
-        cardId={props.id}
-        taskTitle={props.title}
-        taskSeverity={props.severity}
-      />
     </>
   );
 }

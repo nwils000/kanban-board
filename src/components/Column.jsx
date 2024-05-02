@@ -9,7 +9,7 @@ export default function Column({ title, tasks }) {
 
   function handleAddTaskCardPressed() {
     addTaskCardDisplay === 'none'
-      ? setAddTaskCardDisplay('block')
+      ? setAddTaskCardDisplay('flex')
       : setAddTaskCardDisplay('none');
     // console.log('clicked');
   }
