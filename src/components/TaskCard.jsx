@@ -17,9 +17,8 @@ export default function TaskCard(props) {
         </div>
       </div>
       <EditTaskCard
-        toggleDisplayEditTaskCard={props.toggleDisplayEditTaskCard}
         category={props.title}
-        displayEditTaskCard={props.displayEditTaskCard}
+        editTaskCardDisplay={props.editTaskCardDisplay}
         handleEditTaskCardPressed={props.handleEditTaskCardPressed}
         cardId={props.id}
       />

@@ -7,7 +7,6 @@ export default function EditTaskCard({
   handleEditTaskCardPressed,
   category,
   cardId,
-  displayEditTaskCard
 }) {
   const { dispatch } = useContext(GlobalTaskData);
   const [title, setTitle] = useState('');
@@ -62,14 +61,14 @@ export default function EditTaskCard({
             task: {
               id: cardId,
               title: title,
+              // index: state.tasks.length + 1,
               dateCreated: currentDateAndTime(),
               storyPoints: storyPoints,
-              category: category,
+              //category: category,
             },
           });
         }}
       >
-        {console.log('HI', cardId)}
         Edit Task
       </button>
 

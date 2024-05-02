@@ -6,7 +6,6 @@ export default function Column({ title, tasks }) {
   // console.log('tasks', tasks);
   const [editTaskCardDisplay, setEditTaskCardDisplay] = useState('none');
   const [addTaskCardDisplay, setAddTaskCardDisplay] = useState('none');
-  const [displayEditTaskCard, setDisplayEditTaskCard] = useState(true);
 
   function handleEditTaskCardPressed() {
     editTaskCardDisplay === 'none'
@@ -21,12 +20,6 @@ export default function Column({ title, tasks }) {
     // console.log('clicked');
   }
 
-  function toggleDisplayEditTaskCard() {
-    displayEditTaskCard
-      ? setDisplayEditTaskCard(false)
-      : setDisplayEditTaskCard(true);
-  }
-
   return (
     <div className="board-column" style={{ position: 'relative' }}>
       <div>
@@ -37,8 +30,6 @@ export default function Column({ title, tasks }) {
         console.log('ID', e.id);
         return (
           <TaskCard
-            displayEditTaskCard={displayEditTaskCard}
-            toggleDisplayEditTaskCard={toggleDisplayEditTaskCard}
             category={title}
             key={e.id}
             id={e.id}
@@ -53,6 +44,7 @@ export default function Column({ title, tasks }) {
           />
         );
       })}
+
       <AddTaskCard
         category={title}
         addTaskCardDisplay={addTaskCardDisplay}

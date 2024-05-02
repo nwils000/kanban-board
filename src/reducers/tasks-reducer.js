@@ -32,9 +32,9 @@ export const tasksReducer = (state, action) => {
           return {
             ...task,
             title: action.task.title,
-            // taskNumber: action.task.index,
-            // dateCreated: action.task.dateCreated,
-            // storyPoints: action.task.storyPoints,
+            taskNumber: action.task.index,
+            dateCreated: action.task.dateCreated,
+            storyPoints: action.task.storyPoints,
             // category: action.task.category,
           };
         } else {
