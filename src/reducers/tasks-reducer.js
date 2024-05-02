@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export const initialTasksState = {
   tasks: [],
+  totalCount: 1,
 };
 
 export const tasksReducer = (state, action) => {
@@ -16,23 +17,22 @@ export const tasksReducer = (state, action) => {
           ...state.tasks,
           {
             title: action.task.title,
-            taskNumber: action.task.index,
+            taskNumber: state.totalCount,
             dateCreated: action.task.dateCreated,
             storyPoints: action.task.storyPoints,
             category: action.task.category,
             id: uuidv4(),
           },
         ],
+        totalCount: state.totalCount + 1,
       };
 
     case 'EDIT_TASK':
-      console.log(state);
-      const updatedTasks = state.tasks.map((task) => {
+      const editedTasks = state.tasks.map((task) => {
         if (task.id === action.task.id) {
           return {
             ...task,
             title: action.task.title,
-            taskNumber: action.task.index,
             dateCreated: action.task.dateCreated,
             storyPoints: action.task.storyPoints,
             // category: action.task.category,
@@ -43,7 +43,19 @@ export const tasksReducer = (state, action) => {
       });
       return {
         ...state,
-        tasks: updatedTasks,
+        tasks: editedTasks,
+      };
+
+    case 'DELETE_TASK':
+      console.log('DELETED TASKS111', state.tasks);
+      console.log('DA ID', action.task.id);
+      const deletedTasks = state.tasks.filter((task) => {
+        return task.id !== action.task.id;
+      });
+      console.log('DELETED TASKS', deletedTasks);
+      return {
+        ...state,
+        tasks: deletedTasks,
       };
   }
 };

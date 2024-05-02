@@ -4,15 +4,9 @@ import AddTaskCard from './AddTaskCard';
 
 export default function Column({ title, tasks }) {
   // console.log('tasks', tasks);
-  const [editTaskCardDisplay, setEditTaskCardDisplay] = useState('none');
+
   const [addTaskCardDisplay, setAddTaskCardDisplay] = useState('none');
 
-  function handleEditTaskCardPressed() {
-    editTaskCardDisplay === 'none'
-      ? setEditTaskCardDisplay('block')
-      : setEditTaskCardDisplay('none');
-    // console.log('clicked');
-  }
   function handleAddTaskCardPressed() {
     addTaskCardDisplay === 'none'
       ? setAddTaskCardDisplay('block')
@@ -37,8 +31,6 @@ export default function Column({ title, tasks }) {
             dateCreated={e.dateCreated}
             taskNumber={e.taskNumber}
             storyPoints={e.storyPoints}
-            editTaskCardDisplay={editTaskCardDisplay}
-            handleEditTaskCardPressed={handleEditTaskCardPressed}
             addTaskCardDisplay={addTaskCardDisplay}
             handleAddTaskCardPressed={handleAddTaskCardPressed}
           />

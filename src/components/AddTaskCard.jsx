@@ -7,7 +7,7 @@ export default function AddTaskCard({
   handleAddTaskCardPressed,
   category,
 }) {
-  const { state, dispatch } = useContext(GlobalTaskData);
+  const { dispatch } = useContext(GlobalTaskData);
   const [title, setTitle] = useState('');
   const [storyPoints, setStoryPoints] = useState(0);
 
@@ -38,6 +38,7 @@ export default function AddTaskCard({
       }}
       className="edit-task-card"
     >
+      <span onClick={handleAddTaskCardPressed}>X</span>
       <input
         type="text"
         value={title}
@@ -59,7 +60,6 @@ export default function AddTaskCard({
             type: 'ADD_TASK',
             task: {
               title: title,
-              index: state.tasks.length + 1,
               dateCreated: currentDateAndTime(),
               storyPoints: storyPoints,
               category: category,

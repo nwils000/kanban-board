@@ -5,10 +5,9 @@ import { useState } from 'react';
 export default function EditTaskCard({
   editTaskCardDisplay,
   handleEditTaskCardPressed,
-  category,
   cardId,
 }) {
-  const { dispatch } = useContext(GlobalTaskData);
+  const { state, dispatch } = useContext(GlobalTaskData);
   const [title, setTitle] = useState('');
   const [storyPoints, setStoryPoints] = useState(0);
 
@@ -39,6 +38,7 @@ export default function EditTaskCard({
       }}
       className="edit-task-card"
     >
+      <span onClick={handleEditTaskCardPressed}>X</span>
       <input
         type="text"
         value={title}
@@ -61,7 +61,7 @@ export default function EditTaskCard({
             task: {
               id: cardId,
               title: title,
-              // index: state.tasks.length + 1,
+              index: state.tasks.length,
               dateCreated: currentDateAndTime(),
               storyPoints: storyPoints,
               //category: category,
