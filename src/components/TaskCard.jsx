@@ -39,7 +39,7 @@ export default function TaskCard(props) {
         </div>
       </div>
       <EditTaskCard
-        category={props.title}
+        category={props.category}
         editTaskCardDisplay={editTaskCardDisplay}
         handleEditTaskCardPressed={handleEditTaskCardPressed}
         cardId={props.id}

@@ -6,11 +6,13 @@ export default function EditTaskCard({
   editTaskCardDisplay,
   handleEditTaskCardPressed,
   cardId,
+  category,
 }) {
   const { state, dispatch } = useContext(GlobalTaskData);
   const [title, setTitle] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(category);
   const [storyPoints, setStoryPoints] = useState(0);
-
+  console.log('THE CAT', category);
   function currentDateAndTime() {
     let currentDate = new Date();
     let formattedDate = currentDate.toLocaleString('en-US', {
@@ -53,6 +55,18 @@ export default function EditTaskCard({
           setStoryPoints(e.target.value);
         }}
       />
+      {console.log('selected category', selectedCategory)}
+      <select
+        onChange={(e) => {
+          setSelectedCategory(e.target.value);
+        }}
+        defaultValue={selectedCategory}
+      >
+        <option value="BACKLOG">BACKLOG</option>
+        <option value="IN PROGRESS">IN PROGRESS</option>
+        <option value="IN REVIEW">IN REVIEW</option>
+        <option value="DONE">DONE</option>
+      </select>
       <button
         onClick={() => {
           handleEditTaskCardPressed();
@@ -64,7 +78,7 @@ export default function EditTaskCard({
               index: state.tasks.length,
               dateCreated: currentDateAndTime(),
               storyPoints: storyPoints,
-              //category: category,
+              category: selectedCategory,
             },
           });
         }}
