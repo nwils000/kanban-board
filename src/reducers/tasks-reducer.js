@@ -1,9 +1,12 @@
 /* eslint-disable no-case-declarations */
 import { v4 as uuidv4 } from 'uuid';
 
-export const initialTasksState = {
+const JSONStorage = JSON.parse(localStorage.getItem('STATE'));
+
+export const initialTasksState = JSONStorage ?? {
   tasks: [],
-  totalCount: 1,
+  totalCount: 0,
+
 };
 
 export const tasksReducer = (state, action) => {
@@ -17,9 +20,9 @@ export const tasksReducer = (state, action) => {
           ...state.tasks,
           {
             title: action.task.title,
-            taskNumber: state.totalCount,
+            taskNumber: state.totalCount + 1,
             dateCreated: action.task.dateCreated,
-            storyPoints: action.task.storyPoints,
+            severity: action.task.severity,
             category: action.task.category,
             id: uuidv4(),
           },
@@ -34,7 +37,7 @@ export const tasksReducer = (state, action) => {
             ...task,
             title: action.task.title,
             dateCreated: action.task.dateCreated,
-            storyPoints: action.task.storyPoints,
+            severity: action.task.severity,
             category: action.task.category,
           };
         } else {

@@ -17,25 +17,27 @@ export default function TaskCard(props) {
     <>
       {console.log('KEY', props.id)}
       <div className="task-card" onClick={handleEditTaskCardPressed}>
-        <span
-          onClick={() => {
-            dispatch({
-              type: 'DELETE_TASK',
-              task: {
-                id: props.id,
-              },
-            });
-          }}
-        >
-          X
-        </span>
-        <span>
-          #{props.taskNumber} * {props.dateCreated}
-        </span>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <span>
+            #{props.taskNumber} * {props.dateCreated}
+          </span>
+          <span
+            onClick={() => {
+              dispatch({
+                type: 'DELETE_TASK',
+                task: {
+                  id: props.id,
+                },
+              });
+            }}
+          >
+            X
+          </span>
+        </div>
         <p>{props.title}</p>
         <div style={{ display: 'flex', gap: '10px' }}>
           <SeverityBadge />
-          <span>{props.storyPoints}</span>
+          <span>{props.severity}</span>
         </div>
       </div>
       <EditTaskCard

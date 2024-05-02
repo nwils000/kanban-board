@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import Board from './components/Board';
-import { createContext } from 'react';
+import { createContext, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { initialTasksState, tasksReducer } from './reducers/tasks-reducer';
 import { useReducer } from 'react';
@@ -9,6 +9,10 @@ export const GlobalTaskData = createContext(null);
 
 function Layout() {
   const [state, dispatch] = useReducer(tasksReducer, initialTasksState);
+  useEffect(() => {
+    localStorage.setItem('STATE', JSON.stringify(state));
+  }, [state]);
+
   return (
     <>
       <GlobalTaskData.Provider value={{ state, dispatch }}>

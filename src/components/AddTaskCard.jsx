@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { GlobalTaskData } from '../main';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function AddTaskCard({
   addTaskCardDisplay,
@@ -9,7 +9,7 @@ export default function AddTaskCard({
 }) {
   const { dispatch } = useContext(GlobalTaskData);
   const [title, setTitle] = useState('');
-  const [storyPoints, setStoryPoints] = useState(0);
+  const [severity, setSeverity] = useState(0);
 
   function currentDateAndTime() {
     let currentDate = new Date();
@@ -48,9 +48,9 @@ export default function AddTaskCard({
       />
       <input
         type="number"
-        value={storyPoints}
+        value={severity}
         onChange={(e) => {
-          setStoryPoints(e.target.value);
+          setSeverity(e.target.value);
         }}
       />
       <button
@@ -61,7 +61,7 @@ export default function AddTaskCard({
             task: {
               title: title,
               dateCreated: currentDateAndTime(),
-              storyPoints: storyPoints,
+              severity: severity,
               category: category,
             },
           });

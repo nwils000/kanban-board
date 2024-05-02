@@ -30,7 +30,7 @@ export default function Column({ title, tasks }) {
             title={e.title}
             dateCreated={e.dateCreated}
             taskNumber={e.taskNumber}
-            storyPoints={e.storyPoints}
+            severity={e.severity}
             addTaskCardDisplay={addTaskCardDisplay}
             handleAddTaskCardPressed={handleAddTaskCardPressed}
           />
