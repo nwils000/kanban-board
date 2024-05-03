@@ -34,6 +34,7 @@ export default function EditTaskCard({
     <div
       style={{
         display: editTaskCardDisplay,
+        zIndex: '2',
       }}
       className="modal"
     >
@@ -47,6 +48,7 @@ export default function EditTaskCard({
       <div className="label-group">
         <label htmlFor="title">Title:</label>
         <input
+          maxLength={120}
           id="title"
           type="text"
           value={title}
@@ -103,7 +105,18 @@ export default function EditTaskCard({
           >
             Edit Task
           </button>
-          <button>Remove Task</button>
+          <button
+            onClick={() => {
+              dispatch({
+                type: 'DELETE_TASK',
+                task: {
+                  id: cardId,
+                },
+              });
+            }}
+          >
+            Remove Task
+          </button>
         </div>
       </div>
 

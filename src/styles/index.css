@@ -1,1 +1,9 @@
 @import './normalize.css';
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+  font-family: 'Work Sans', sans-serif;
+}

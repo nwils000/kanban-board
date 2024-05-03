@@ -35,7 +35,7 @@ export default function TaskCard(props) {
             >
               <span style={{ color: 'rgb(149 149 149)' }}>
                 #{props.taskNumber}
-              </span>{' '}
+              </span>
               <span>•</span> <span>{props.dateCreated}</span>
             </span>
             <span
@@ -49,7 +49,15 @@ export default function TaskCard(props) {
               }}
             ></span>
           </div>
-          <p style={{ fontSize: '1.15rem' }}>{props.title}</p>
+          <p
+            style={{
+              fontSize: '1.15rem',
+              maxWidth: '20rem',
+              overflowWrap: 'break-word',
+            }}
+          >
+            {props.title}
+          </p>
           <div
             className="severity-wrapper"
             style={{ display: 'flex', gap: '10px', alignItems: 'center' }}

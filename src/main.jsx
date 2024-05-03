@@ -4,6 +4,7 @@ import { createContext, useEffect } from 'react';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import { initialTasksState, tasksReducer } from './reducers/tasks-reducer';
 import { useReducer } from 'react';
+import './styles/index.css';
 
 export const GlobalTaskData = createContext(null);
 

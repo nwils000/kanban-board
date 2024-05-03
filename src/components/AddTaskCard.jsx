@@ -29,6 +29,7 @@ export default function AddTaskCard({
     <div
       style={{
         display: addTaskCardDisplay,
+        zIndex: '2',
       }}
       className="modal modal-add"
     >

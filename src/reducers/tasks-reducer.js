@@ -6,7 +6,7 @@ const JSONStorage = JSON.parse(localStorage.getItem('STATE'));
 export const initialTasksState = JSONStorage ?? {
   tasks: [],
   totalCount: 0,
-
+  historicalTasks: [],
 };
 
 export const tasksReducer = (state, action) => {
@@ -50,6 +50,7 @@ export const tasksReducer = (state, action) => {
       };
 
     case 'DELETE_TASK':
+      console.log('history', state.historicalTasks);
       console.log('DELETED TASKS111', state.tasks);
       console.log('DA ID', action.task.id);
       const deletedTasks = state.tasks.filter((task) => {
@@ -59,6 +60,10 @@ export const tasksReducer = (state, action) => {
       return {
         ...state,
         tasks: deletedTasks,
+        historicalTasks: [
+          ...state.historicalTasks,
+          ...deletedTasks.map((task) => ({ ...task })),
+        ],
       };
   }
 };
