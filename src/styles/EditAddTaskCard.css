@@ -104,13 +104,27 @@
   border: none;
   padding: 0.5rem 1.2rem;
   border-radius: 10px;
-
   background-color: rgb(241, 241, 241);
   margin: 1rem;
   transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .modal-add button:hover {
+  cursor: pointer;
+  background-color: #f2f2f2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.121);
+}
+
+.historical-data-button {
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 10px;
+  background-color: rgb(241, 241, 241);
+
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.historical-data-button:hover {
   cursor: pointer;
   background-color: #f2f2f2;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.121);

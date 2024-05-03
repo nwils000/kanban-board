@@ -1,45 +1,41 @@
 import '../styles/BoardColumns.css';
-import { useContext } from 'react';
 import Column from './Column';
-import { GlobalTaskData } from '../main';
 
-export default function BoardColumns() {
-  const { state } = useContext(GlobalTaskData);
-
-  console.log('STATEEE', state);
+export default function BoardColumns({ stateToShow }) {
+  console.log('STATEEE', stateToShow);
 
   return (
     <div className="board-columns">
       <Column
         title={'BACKLOG'}
-        tasks={state.tasks
+        tasks={stateToShow
           ?.filter((e) => e.category === 'BACKLOG')
           .sort((a, b) => {
-            return a.severity - b.severity;
+            return a.storyPoints - b.storyPoints;
           })}
       />
       <Column
         title={'IN PROGRESS'}
-        tasks={state.tasks
+        tasks={stateToShow
           ?.filter((e) => e.category === 'IN PROGRESS')
           .sort((a, b) => {
-            return a.severity - b.severity;
+            return a.storyPoints - b.storyPoints;
           })}
       />
       <Column
         title={'IN REVIEW'}
-        tasks={state.tasks
+        tasks={stateToShow
           ?.filter((e) => e.category === 'IN REVIEW')
           .sort((a, b) => {
-            return a.severity - b.severity;
+            return a.storyPoints - b.storyPoints;
           })}
       />
       <Column
         title={'DONE'}
-        tasks={state.tasks
+        tasks={stateToShow
           ?.filter((e) => e.category === 'DONE')
           .sort((a, b) => {
-            return a.severity - b.severity;
+            return a.storyPoints - b.storyPoints;
           })}
       />
     </div>

@@ -53,16 +53,19 @@ export const tasksReducer = (state, action) => {
       console.log('history', state.historicalTasks);
       console.log('DELETED TASKS111', state.tasks);
       console.log('DA ID', action.task.id);
-      const deletedTasks = state.tasks.filter((task) => {
+      const remainingTasks = state.tasks.filter((task) => {
         return task.id !== action.task.id;
       });
-      console.log('DELETED TASKS', deletedTasks);
+      const taskToDelete = state.tasks.filter((task) => {
+        return task.id === action.task.id;
+      });
+      console.log('DELETED TASKS', remainingTasks);
       return {
         ...state,
-        tasks: deletedTasks,
+        tasks: remainingTasks,
         historicalTasks: [
           ...state.historicalTasks,
-          ...deletedTasks.map((task) => ({ ...task })),
+          ...taskToDelete.map((task) => ({ ...task })),
         ],
       };
   }
