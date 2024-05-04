@@ -8,6 +8,8 @@ export default function SeverityBadge({ severityAmount }) {
   };
 
   function showTheRightBadge(severity) {
+    console.log('SEVERITY,', severity);
+
     if (severity === 0) {
       return (
         <div style={{ ...style, backgroundColor: '#000000' }}>Blocker</div>
@@ -41,5 +43,5 @@ export default function SeverityBadge({ severityAmount }) {
     }
   }
 
-  return showTheRightBadge(severityAmount);
+  return showTheRightBadge(Number(severityAmount));
 }

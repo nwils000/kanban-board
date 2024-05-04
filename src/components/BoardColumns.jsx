@@ -11,7 +11,7 @@ export default function BoardColumns({ stateToShow }) {
         tasks={stateToShow
           ?.filter((e) => e.category === 'BACKLOG')
           .sort((a, b) => {
-            return a.storyPoints - b.storyPoints;
+            return a.severity - b.severity;
           })}
       />
       <Column
@@ -19,7 +19,7 @@ export default function BoardColumns({ stateToShow }) {
         tasks={stateToShow
           ?.filter((e) => e.category === 'IN PROGRESS')
           .sort((a, b) => {
-            return a.storyPoints - b.storyPoints;
+            return a.severity - b.severity;
           })}
       />
       <Column
@@ -27,7 +27,7 @@ export default function BoardColumns({ stateToShow }) {
         tasks={stateToShow
           ?.filter((e) => e.category === 'IN REVIEW')
           .sort((a, b) => {
-            return a.storyPoints - b.storyPoints;
+            return a.severity - b.severity;
           })}
       />
       <Column
@@ -35,7 +35,7 @@ export default function BoardColumns({ stateToShow }) {
         tasks={stateToShow
           ?.filter((e) => e.category === 'DONE')
           .sort((a, b) => {
-            return a.storyPoints - b.storyPoints;
+            return a.severity - b.severity;
           })}
       />
     </div>
