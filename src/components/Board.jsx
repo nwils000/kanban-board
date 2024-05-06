@@ -7,12 +7,22 @@ import { GlobalTaskData } from '../main';
 function Board() {
   const { state } = useContext(GlobalTaskData);
   const [stateToShow, setStateToShow] = useState(state.tasks);
+  const [historicalTasksButtonText, setHistoricalTasksButtonText] = useState(
+    'Show Historical Tasks'
+  );
 
   useEffect(() => {
     setStateToShow(state.tasks);
   }, [state]);
 
+  function toggleText() {
+    historicalTasksButtonText === 'Show Historical Tasks'
+      ? setHistoricalTasksButtonText('Show Current Tasks')
+      : setHistoricalTasksButtonText('Show Historical Tasks');
+  }
+
   function handleButtonPress() {
+    toggleText();
     if (stateToShow === state.tasks) {
       setStateToShow(state.historicalTasks);
     } else {
@@ -29,7 +39,7 @@ function Board() {
           className="historical-data-button"
           style={{ position: 'absolute', top: '1.4rem', right: '0' }}
         >
-          Show Historical Data
+          {historicalTasksButtonText}
         </button>
         <SearchFilterBar />
         <BoardColumns stateToShow={stateToShow} />
