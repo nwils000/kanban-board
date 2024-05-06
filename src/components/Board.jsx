@@ -16,9 +16,11 @@ function Board() {
   }, [state]);
 
   function toggleText() {
-    historicalCardsButtonText === 'Show Historical Cards'
-      ? setHistoricalCardsButtonText('Show Current Cards')
-      : setHistoricalCardsButtonText('Show Historical Cards');
+    if (stateToShow === state.tasks) {
+      setHistoricalCardsButtonText('Show Historical Cards');
+    } else {
+      setHistoricalCardsButtonText('Show Current Cards');
+    }
   }
 
   function handleButtonPress() {
