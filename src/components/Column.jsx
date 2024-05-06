@@ -20,7 +20,8 @@ export default function Column({ title, tasks }) {
         <span>{title}</span>
         <button onClick={handleAddTaskCardPressed}>+</button>
       </div>
-      {tasks.map((e) => {
+      {console.log('tasks, ', tasks)}
+      {tasks?.map((e) => {
         console.log('ID', e.id);
         return (
           <TaskCard

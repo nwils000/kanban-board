@@ -24,7 +24,7 @@ function Board() {
   function handleButtonPress() {
     toggleText();
     if (stateToShow === state.tasks) {
-      setStateToShow(state.historicalCards);
+      setStateToShow(state.historicalTasks);
     } else {
       setStateToShow(state.tasks);
     }
