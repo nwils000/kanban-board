@@ -17,9 +17,9 @@ function Board() {
 
   function toggleText() {
     if (stateToShow === state.tasks) {
-      setHistoricalCardsButtonText('Show Historical Cards');
-    } else {
       setHistoricalCardsButtonText('Show Current Cards');
+    } else {
+      setHistoricalCardsButtonText('Show Historical Cards');
     }
   }
 
